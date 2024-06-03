@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="weather-icons.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Weather Forecast</h1>
+
+    <!-- search container -->
+    <div class="card-container">
+      <div class="weather-card-1">
+        <h4 class="title-1">Search City</h4>
+        <div class="search-bar">
+          <input
+            type="search"
+            class="city-name"
+            id="location-input"
+            placeholder="Type the name of the city"
+          />
+          <button type="submit" id="search-button" class="search-icon"></button>
+        </div>
+
+        <div class="toggle-switch">
+          <p>Degree Celsius</p>
+
+          <label class="switch">
+            <input type="checkbox" id="toggleCheckbox" />
+            <span class="slider round"></span>
+          </label>
+
+          <p>Farenheit</p>
+        </div>
+
+        <p></p>
+      </div>
+    </div>
+
+    <!-- Temperature display -->
+
+    <div class="card-container">
+      <div class="temperature">
+        <h3 id="location"></h3>
+        <h3 id="current-temp" class="temp-font"></h3>
+        <input type="hidden" id="tempInKelvin" />
+       
+        <div id="weather-icon">
+          <!-- append from js -->
+        </div>
+        <h3 id="description"></h3>
+        <div class="min-max-temp">
+          <p id="low-temp"></p>
+          <p id="high-temp"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="cols-2">
+        <div class="container-col-center" >
+          <h3>Sunrise</h3>
+          <img src="/assets/img/sunrise.svg" class="icon-typ" alt="">
+          <p id="sunrise"></p>
+        </div>
+        <div class="container-col-center">
+          <h3>Sunset</h3>
+          <img src="/assets/img/sunset.svg" class="icon-typ" alt="">
+          <p id="sunset"></p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <footer>
+      <div class="footer">
+        <p class="made-by">Demo by</p>
+        <p class="author">Vishal Amler</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
