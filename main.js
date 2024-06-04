@@ -67,7 +67,7 @@ const getWeatherData = () => {
         sunrise.textContent = sunRise;
         humidity.innerHTML = `${data.main.humidity}%`;
         visibility.innerHTML = `${data.visibility / 1000} km`;
-        console.log(data.visibility);
+        // console.log(data.visibility);
 
     }).catch(error => {
         console.error('Error fetching weather data:', error);
@@ -94,7 +94,7 @@ const convertTime = (ms, timezone) => {
 
     // Create total milliseconds by adding the timezone offset
     const totalMilliseconds = msInMilliseconds + timezoneOffsetMs;
-    console.log(`total ms : ${totalMilliseconds}`);
+    // console.log(`total ms : ${totalMilliseconds}`);
 
     // Create a new JavaScript Date object based on the timestamp
     const date = new Date(totalMilliseconds);
