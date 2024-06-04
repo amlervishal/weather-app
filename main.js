@@ -13,6 +13,8 @@ const checkbox = document.getElementById('toggleCheckbox');
 const icon = document.querySelector("#weather-icon");
 const sunrise = document.querySelector("#sunrise");
 const sunset = document.querySelector("#sunset");
+const visibility = document.querySelector("#visibility");
+const humidity = document.querySelector("#humidity");
 
 
 // Initial boolean value
@@ -57,12 +59,15 @@ const getWeatherData = () => {
             highTemp.textContent = `High: ${highCelsius}°F`;
             lowTemp.textContent = `Low: ${lowCelsius}°F`
         };
-        const timezone = data.timezone;
-        const sunRise = convertTime(data.sys.sunrise, timezone);
-        const sunSet = convertTime(data.sys.sunset, timezone);
         
+        const sunRise = convertTime(data.sys.sunrise, data.timezone);
+        const sunSet = convertTime(data.sys.sunset, data.timezone);
+
         sunset.textContent = sunSet;
-        sunrise.textContent = sunRise
+        sunrise.textContent = sunRise;
+        humidity.innerHTML = `${data.main.humidity}%`;
+        visibility.innerHTML = `${data.visibility / 1000} km`;
+        console.log(data.visibility);
 
     }).catch(error => {
         console.error('Error fetching weather data:', error);
@@ -82,25 +87,25 @@ const toFarenheit = (kelvin) => {
 }
 
 const convertTime = (ms, timezone) => {
-    const timestamp = ms;
-    const timezoneOffsetInSeconds = timezone; // Assuming data.timezone contains the timezone offset in seconds
-
-    // Convert Unix timestamp to milliseconds
-    const timeMilliseconds = timestamp * 1000;
-
-    // Create a new Date object from the milliseconds
-    const timeDate = new Date(timeMilliseconds);
-
-    // Adjust time by adding the timezone offset
-    timeDate.setSeconds(timeDate.getSeconds() + timezoneOffsetInSeconds);
-
-    // Get the hours and minutes from the Date object
-    const hours = timeDate.getHours();
-    const minutes = timeDate.getMinutes();
-
-    console.log("Time (adjusted for timezone) in hours and minutes:", hours, ":", minutes);
     
-    return `${hours} : ${minutes}`
+    // Convert ms and timezone from seconds to milliseconds
+    const msInMilliseconds = ms * 1000;
+    const timezoneOffsetMs = timezone * 1000;
+
+    // Create total milliseconds by adding the timezone offset
+    const totalMilliseconds = msInMilliseconds + timezoneOffsetMs;
+    console.log(`total ms : ${totalMilliseconds}`);
+
+    // Create a new JavaScript Date object based on the timestamp
+    const date = new Date(totalMilliseconds);
+
+    // Get UTC hours, minutes, and seconds
+    const hours = date.getUTCHours();
+    const minutes = "0" + date.getUTCMinutes();
+    const seconds = "0" + date.getUTCSeconds();
+
+    // Will display time in 10:30:23 format
+    const formattedTime = hours + ':' + minutes.substr(-2) + ' hr';
+
+    return formattedTime;
 }
-
-

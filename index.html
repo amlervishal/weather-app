@@ -5,8 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="weather-icons.min.css">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./weather-icons.min.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
@@ -30,7 +30,7 @@
         </div>
 
         <div class="toggle-switch">
-          <p>Degree Celsius</p>
+          <p>Celsius</p>
 
           <label class="switch">
             <input type="checkbox" id="toggleCheckbox" />
@@ -66,18 +66,30 @@
     <div class="card-container">
       <div class="cols-2">
         <div class="container-col-center" >
-          <h3>Sunrise</h3>
-          <img src="/assets/img/sunrise.svg" class="icon-typ" alt="">
+          <p>Sunrise</p>
+          <img src="./assets/img/sunrise.svg" class="icon-typ" alt="">
           <p id="sunrise"></p>
         </div>
         <div class="container-col-center">
-          <h3>Sunset</h3>
-          <img src="/assets/img/sunset.svg" class="icon-typ" alt="">
+          <p>Sunset</p>
+          <img src="./assets/img/sunset.svg" class="icon-typ" alt="">
           <p id="sunset"></p>
         </div>
       </div>
-    </div>
 
+      <div class="cols-2">
+        <div class="container-col-center" >
+          <p>Visibility</p>
+          <img src="./assets/img/visibility.svg" class="icon-typ" alt="">
+          <p id="visibility"></p>
+        </div>
+        <div class="container-col-center">
+          <p>Humidity</p>
+          <img src="./assets/img/humidity.svg" class="icon-typ" alt="">
+          <p id="humidity"></p>
+        </div>
+      </div>
+    </div>
 
 
     <footer>
