@@ -1,6 +1,6 @@
 import FetchWrapper from "./fetchwrapper.js";
 
-const API = new FetchWrapper("http://api.openweathermap.org/data/2.5/") 
+const API = new FetchWrapper("https://api.openweathermap.org/data/2.5/") 
 
 const locationInput = document.querySelector("#location-input");
 const searchButton = document.querySelector("#search-button");
