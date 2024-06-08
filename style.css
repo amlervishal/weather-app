@@ -299,3 +299,29 @@ h1, h2, h3, h4, h5, h6, p {
   display: none;
 }
 
+#autocomplete-container {
+  display: none; /* Hide the autocomplete container by default */
+  position: absolute;
+  top: 2.5rem;
+  width: 100%;
+  
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 200px; /* Set maximum height for scrollbar */
+  overflow-y: auto; /* Add scrollbar if content exceeds container height */
+}
+
+.autocomplete-item {
+  
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
+}
+
+#location-input:focus + #autocomplete-container {
+  display: block; /* Display the autocomplete container when the input is focused */
+}
