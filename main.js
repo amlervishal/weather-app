@@ -20,47 +20,6 @@ const humidity = document.querySelector("#humidity");
 // Initial boolean value
 let useCelsius = true; // Default to Celsius
 
-// autocomplete suggestions from JSON
-document.addEventListener("DOMContentLoaded", () => {
-    const autocompleteContainer = document.querySelector("#autocomplete-container");
-    const locationInput = document.getElementById("location-input"); // Assuming "location-input" is the correct ID of your input field
-
-    fetch("./cities.json")
-    .then(response => response.json())
-    .then(data => {
-        const cities = data.cities_list.map(city => city.name);
-        // console.log(cities);
-
-        locationInput.addEventListener("input", () => {
-            const userInput = locationInput.value.trim().toLowerCase();
-            const filteredCities = cities.filter(city => city.toLowerCase().includes(userInput));
-            console.log(filteredCities);
-
-            autocompleteContainer.innerHTML = "";
-
-            filteredCities.forEach(city => {
-                const cityElement = document.createElement("div");
-                cityElement.textContent = city;
-                cityElement.classList.add("autocomplete-item");
-                cityElement.addEventListener("click", () => {
-                    locationInput.value = city;
-                    console.log(city);
-                    autocompleteContainer.innerHTML = "";
-                });
-                autocompleteContainer.appendChild(cityElement);
-            });
-        });
-        document.addEventListener("click", (event) => {
-            if (!autocompleteContainer.contains(event.target)){
-                autocompleteContainer.innerHTML = "";
-            }
-        })
-    })
-});
-
-    
-
-
 // Function to toggle the boolean value when the checkbox state changes
 checkbox.addEventListener('change', function() {
     useCelsius = !this.checked;
@@ -101,6 +60,7 @@ const getWeatherData = () => {
             lowTemp.textContent = `Low: ${lowCelsius}°F`
         };
         
+       
         const sunRise = convertTime(data.sys.sunrise, data.timezone);
         const sunSet = convertTime(data.sys.sunset, data.timezone);
 
@@ -121,11 +81,12 @@ searchButton.addEventListener("click", event => {
 })
 
 // event handler for enter key
-// locationInput.addEventListener("keydown", event => {
-//     if (event.keyCode === 13) {
-//         getWeatherData()
-//     }
-// })
+locationInput.addEventListener("keyup", event => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchButton.click();
+    }
+})
 
 const toCelsius = (kelvin) => {
     return Math.round(kelvin - 273);
